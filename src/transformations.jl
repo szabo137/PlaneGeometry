@@ -4,10 +4,11 @@ abstract type AbstractTransformations end
 struct Affine{T<:Real} <: AbstractTransformations 
     theta::T
     scale::T
+
+    function Affine(theta::T; scale::T = one(T)) where T
+        new{T}(theta,scale)
+    end
 end
-
-Affine(t::Real,s::Real) = Affine(promote(t,s)...)
-
 
 Base.eltype(::Affine{T}) where T = T
 
